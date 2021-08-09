@@ -1,0 +1,2 @@
+rootProject.name = "Kotlinmvvmwithlaravel"
+include ':app'
