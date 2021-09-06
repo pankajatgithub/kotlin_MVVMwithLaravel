@@ -7,14 +7,14 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.kotlinmvvmwithlaravel.auth.LoginFragment"
+        android:name="com.example.kotlinmvvmwithlaravel.ui.auth.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_register"
 
         />
     <fragment
         android:id="@+id/registrationFragment"
-        android:name="com.example.kotlinmvvmwithlaravel.auth.RegistrationFragment"
+        android:name="com.example.kotlinmvvmwithlaravel.ui.auth.RegistrationFragment"
         android:label="RegistrationFragment"
         tools:layout="@layout/fragment_register"
         />

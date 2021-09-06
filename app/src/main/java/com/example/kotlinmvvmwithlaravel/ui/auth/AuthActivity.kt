@@ -1,4 +1,4 @@
-package com.example.kotlinmvvmwithlaravel.auth
+package com.example.kotlinmvvmwithlaravel.ui.auth
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

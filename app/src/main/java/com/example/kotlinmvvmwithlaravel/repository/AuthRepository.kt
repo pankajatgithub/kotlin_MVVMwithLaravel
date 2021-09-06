@@ -9,7 +9,7 @@ class AuthRepository(
         email:String,
         password:String
 
-    )= safeApiCall {
+    ) = safeApiCall {
         api.login(email,password)
     }
 }
