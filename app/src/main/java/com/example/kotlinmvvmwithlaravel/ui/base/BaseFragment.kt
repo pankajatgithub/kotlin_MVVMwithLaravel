@@ -24,10 +24,11 @@ abstract class BaseFragment<VM:ViewModel,B:ViewBinding,R:BaseRepository>:Fragmen
     ): View? {
 
         binding=getFragmentBinding(inflater,container)
-        return binding.root
+
 
         val factory=ViewModelFactory(getFragmentRepository())
         viewModel=ViewModelProvider(this,factory).get(getViewModel())
+        return binding.root
 
 //        return super.onCreateView(inflater, container, savedInstanceState)
     }
