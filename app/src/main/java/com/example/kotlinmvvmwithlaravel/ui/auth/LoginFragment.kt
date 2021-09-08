@@ -1,18 +1,17 @@
 package com.example.kotlinmvvmwithlaravel.ui.auth
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import com.example.kotlinmvvmwithlaravel.R
+import androidx.lifecycle.lifecycleScope
 import com.example.kotlinmvvmwithlaravel.databinding.FragmentLoginBinding
-import com.example.kotlinmvvmwithlaravel.network.AuthApi
-import com.example.kotlinmvvmwithlaravel.network.Resource
-import com.example.kotlinmvvmwithlaravel.repository.AuthRepository
+import com.example.kotlinmvvmwithlaravel.data.network.AuthApi
+import com.example.kotlinmvvmwithlaravel.data.network.Resource
+import com.example.kotlinmvvmwithlaravel.data.repository.AuthRepository
 import com.example.kotlinmvvmwithlaravel.ui.base.BaseFragment
+import kotlinx.coroutines.launch
 
 
 class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepository>() {
@@ -32,6 +31,10 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
 
             when (it) {
                 is Resource.Success -> {
+                    lifecycleScope.launch {
+                        userPreferences.saveAuthToken(it.value.user.access_token)
+                    }
+
                     Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_LONG).show()
                 }
                 is Resource.Failure -> {

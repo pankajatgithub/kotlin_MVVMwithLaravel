@@ -1,6 +1,6 @@
-package com.example.kotlinmvvmwithlaravel.repository
+package com.example.kotlinmvvmwithlaravel.data.repository
 
-import com.example.kotlinmvvmwithlaravel.network.AuthApi
+import com.example.kotlinmvvmwithlaravel.data.network.AuthApi
 
 class AuthRepository(
     private val api:AuthApi

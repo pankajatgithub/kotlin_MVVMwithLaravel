@@ -4,11 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.kotlinmvvmwithlaravel.network.Resource
-import com.example.kotlinmvvmwithlaravel.repository.AuthRepository
-import com.example.kotlinmvvmwithlaravel.responses.LoginResponse
+import com.example.kotlinmvvmwithlaravel.data.network.Resource
+import com.example.kotlinmvvmwithlaravel.data.repository.AuthRepository
+import com.example.kotlinmvvmwithlaravel.data.responses.LoginResponse
 import kotlinx.coroutines.launch
-import retrofit2.Response
 
 class AuthViewModel(
     private val repository: AuthRepository

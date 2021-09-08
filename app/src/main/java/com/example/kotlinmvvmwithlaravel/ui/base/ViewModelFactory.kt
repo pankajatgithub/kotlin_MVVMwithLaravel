@@ -2,8 +2,8 @@ package com.example.kotlinmvvmwithlaravel.ui.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.kotlinmvvmwithlaravel.repository.AuthRepository
-import com.example.kotlinmvvmwithlaravel.repository.BaseRepository
+import com.example.kotlinmvvmwithlaravel.data.repository.AuthRepository
+import com.example.kotlinmvvmwithlaravel.data.repository.BaseRepository
 import com.example.kotlinmvvmwithlaravel.ui.auth.AuthViewModel
 
 //https://www.youtube.com/watch?v=aF2wuJqe2KM&list=PLk7v1Z2rk4hgmIvyw8rvpiEQxIAbJvDAF&index=7

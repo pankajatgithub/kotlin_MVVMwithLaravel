@@ -1,10 +1,9 @@
-package com.example.kotlinmvvmwithlaravel.repository
+package com.example.kotlinmvvmwithlaravel.data.repository
 
-import com.example.kotlinmvvmwithlaravel.network.Resource
+import com.example.kotlinmvvmwithlaravel.data.network.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
-import retrofit2.Response
 
 abstract class BaseRepository {
 

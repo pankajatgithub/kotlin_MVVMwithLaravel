@@ -1,4 +1,4 @@
-package com.example.kotlinmvvmwithlaravel.responses
+package com.example.kotlinmvvmwithlaravel.data.responses
 
 data class User(
     val access_token: String,

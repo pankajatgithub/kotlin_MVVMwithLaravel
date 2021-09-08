@@ -1,6 +1,6 @@
-package com.example.kotlinmvvmwithlaravel.network
+package com.example.kotlinmvvmwithlaravel.data.network
 
-import com.example.kotlinmvvmwithlaravel.responses.LoginResponse
+import com.example.kotlinmvvmwithlaravel.data.responses.LoginResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST

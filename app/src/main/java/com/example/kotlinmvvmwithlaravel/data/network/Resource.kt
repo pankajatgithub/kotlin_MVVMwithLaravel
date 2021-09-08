@@ -1,4 +1,4 @@
-package com.example.kotlinmvvmwithlaravel.network
+package com.example.kotlinmvvmwithlaravel.data.network
 
 import okhttp3.ResponseBody
 
