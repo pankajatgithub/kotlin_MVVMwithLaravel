@@ -6,6 +6,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.kotlinmvvmwithlaravel.data.network.Resource
 import com.example.kotlinmvvmwithlaravel.ui.auth.LoginFragment
+import com.example.kotlinmvvmwithlaravel.ui.base.BaseFragment
 import com.google.android.material.snackbar.Snackbar
 
 //select kotlin file
@@ -47,7 +48,7 @@ fun Fragment.handleApiErrors(
                  requireView().snackbar("You've entered incorrect email or password")
              }  else
              {
-                 //@TODO perform logout operation
+                (this as BaseFragment<*,*,*>).logout()//*,*,* is used to return all type if we don't know the type
 
              }
          }

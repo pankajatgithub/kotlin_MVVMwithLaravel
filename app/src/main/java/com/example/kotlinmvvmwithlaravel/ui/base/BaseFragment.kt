@@ -11,12 +11,15 @@ import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.example.kotlinmvvmwithlaravel.data.UserPreferences
 import com.example.kotlinmvvmwithlaravel.data.network.RemoteDataSource
+import com.example.kotlinmvvmwithlaravel.data.network.UserApi
 import com.example.kotlinmvvmwithlaravel.data.repository.BaseRepository
+import com.example.kotlinmvvmwithlaravel.ui.auth.AuthActivity
+import com.example.kotlinmvvmwithlaravel.ui.startNewActivity
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-abstract class BaseFragment<VM:ViewModel,B:ViewBinding,R:BaseRepository>:Fragment() {
+abstract class BaseFragment<VM:BaseViewModel,B:ViewBinding,R:BaseRepository>:Fragment() {
 
     protected lateinit var userPreferences: UserPreferences
     protected lateinit var binding:B
@@ -43,4 +46,12 @@ abstract class BaseFragment<VM:ViewModel,B:ViewBinding,R:BaseRepository>:Fragmen
     abstract fun getViewModel():Class<VM>
     abstract fun getFragmentBinding(inflator:LayoutInflater,container: ViewGroup?):B
     abstract fun getFragmentRepository():R
+
+    fun logout()=lifecycleScope.launch {
+     val authToken=userPreferences.authToken.first()
+        val api = remoteDataSource.buildApi(UserApi::class.java,authToken)
+        viewModel.logout(api)
+        userPreferences.clear()
+        requireActivity().startNewActivity(AuthActivity::class.java)
+    }
 }

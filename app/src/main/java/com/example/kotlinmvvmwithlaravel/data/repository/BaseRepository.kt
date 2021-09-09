@@ -1,6 +1,7 @@
 package com.example.kotlinmvvmwithlaravel.data.repository
 
 import com.example.kotlinmvvmwithlaravel.data.network.Resource
+import com.example.kotlinmvvmwithlaravel.data.network.UserApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
@@ -28,4 +29,10 @@ abstract class BaseRepository {
         }
 
     }
+    suspend fun logout(
+        api: UserApi
+    )  = safeApiCall{
+   api.logout()
+    }
+
 }

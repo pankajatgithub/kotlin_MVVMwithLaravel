@@ -35,16 +35,7 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
             binding.buttonLogin.enable(email.isNotEmpty() && it.toString().isNotEmpty())
         }
 
-        binding.buttonLogin.setOnClickListener {
-            val email = binding.editTextTextEmailAddress.text.toString().trim()
-            val password = binding.editTextTextPassword.text.toString().trim()
-
-//            binding.progressbar.visible(true)  //extension function call
-
-            viewModel.login(email, password)
-        }
-
-        viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
+            viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
             binding.progressbar.visible(it is Resource.Loading)  //extension function call
 
             when (it) {
@@ -55,10 +46,22 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
                     }
                     Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_LONG).show()
                 }
-                is Resource.Failure -> handleApiErrors(it)
+                is Resource.Failure -> handleApiErrors(it){ login() }//for retry Login
             }
         })
 
+        binding.buttonLogin.setOnClickListener {
+            login()
+//            binding.progressbar.visible(true)  //extension function call
+
+        }
+
+    }
+
+    private fun login() {
+        val email = binding.editTextTextEmailAddress.text.toString().trim()
+        val password = binding.editTextTextPassword.text.toString().trim()
+        viewModel.login(email, password)
     }
 
     override fun getViewModel() = AuthViewModel::class.java

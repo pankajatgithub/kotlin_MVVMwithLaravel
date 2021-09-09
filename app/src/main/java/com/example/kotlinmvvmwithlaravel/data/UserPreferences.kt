@@ -2,10 +2,7 @@ package com.example.kotlinmvvmwithlaravel.data
 
 import android.content.Context
 import androidx.datastore.DataStore
-import androidx.datastore.preferences.Preferences
-import androidx.datastore.preferences.createDataStore
-import androidx.datastore.preferences.edit
-import androidx.datastore.preferences.preferencesKey
+import androidx.datastore.preferences.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -34,7 +31,12 @@ class UserPreferences(
         }
     }
 
+suspend fun clear(){
+    datastore.edit {preferences->
+        preferences.clear()
+    }
 
+}
 
     companion object{
         private val KEY_AUTH= preferencesKey<String>("key_auth")
