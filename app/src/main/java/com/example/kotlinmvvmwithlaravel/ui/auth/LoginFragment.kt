@@ -13,6 +13,7 @@ import com.example.kotlinmvvmwithlaravel.data.network.Resource
 import com.example.kotlinmvvmwithlaravel.data.repository.AuthRepository
 import com.example.kotlinmvvmwithlaravel.ui.base.BaseFragment
 import com.example.kotlinmvvmwithlaravel.ui.enable
+import com.example.kotlinmvvmwithlaravel.ui.handleApiErrors
 import com.example.kotlinmvvmwithlaravel.ui.home.HomeActivity
 import com.example.kotlinmvvmwithlaravel.ui.startNewActivity
 import com.example.kotlinmvvmwithlaravel.ui.visible
@@ -38,27 +39,23 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
             val email = binding.editTextTextEmailAddress.text.toString().trim()
             val password = binding.editTextTextPassword.text.toString().trim()
 
-            binding.progressbar.visible(true)  //extension function call
+//            binding.progressbar.visible(true)  //extension function call
 
             viewModel.login(email, password)
         }
 
         viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
-            binding.progressbar.visible(false)  //extension function call
+            binding.progressbar.visible(it is Resource.Loading)  //extension function call
 
             when (it) {
                 is Resource.Success -> {
-
-
+                    lifecycleScope.launch {
                         viewModel.saveAuthToken(it.value.user.access_token!!)//we can't use !! operator as it may give null pointer exception
                         requireActivity().startNewActivity(HomeActivity::class.java) //extension function call
-
-
+                    }
                     Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_LONG).show()
                 }
-                is Resource.Failure -> {
-                    Toast.makeText(requireContext(), "Login Failed", Toast.LENGTH_SHORT).show()
-                }
+                is Resource.Failure -> handleApiErrors(it)
             }
         })
 
