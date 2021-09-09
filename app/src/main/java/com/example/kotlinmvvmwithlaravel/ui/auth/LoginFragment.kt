@@ -50,7 +50,7 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
                 is Resource.Success -> {
 
 
-                        viewModel.saveAuthToken(it.value.user.access_token)
+                        viewModel.saveAuthToken(it.value.user.access_token!!)//we can't use !! operator as it may give null pointer exception
                         requireActivity().startNewActivity(HomeActivity::class.java) //extension function call
 
 
