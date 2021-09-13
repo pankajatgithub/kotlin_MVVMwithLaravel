@@ -7,6 +7,8 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
+import com.example.kotlinmvvmwithlaravel.R
 import com.example.kotlinmvvmwithlaravel.databinding.FragmentLoginBinding
 import com.example.kotlinmvvmwithlaravel.data.network.AuthApi
 import com.example.kotlinmvvmwithlaravel.data.network.Resource
@@ -53,6 +55,11 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
         binding.buttonLogin.setOnClickListener {
             login()
 //            binding.progressbar.visible(true)  //extension function call
+
+        }
+        binding.textViewRegisterNow.setOnClickListener { view ->
+
+            view.findNavController().navigate(R.id.registrationFragment)
 
         }
 
